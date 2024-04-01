@@ -12,6 +12,7 @@ The example above is created with a dithering mod value of 2
 
 ### Grayscale:
 ![](Images/Grayscale.jpg)
+The example above is created with the rec601 grayscale conversion algorithm
 
 ### Color Inversion:
 ![](Images/Inverted.jpg)
