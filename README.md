@@ -18,7 +18,7 @@ BufferedImage EFFECT_NAME process(BufferedImage inputImage, boolean newFile, Str
 The first function will load a file finder window which allows the user to find the image that they want to process and when finished, will create a new file in the sam folder if requested.
 The second function requires an input BufferImage and much like the first function, will create a new png file in the provided folder.
 
-### <a id="comb-effects"></a> Combining Effects:
+### Combining Effects:
 Process functions can be nested to combine effects.
 Example:
 ```java
@@ -50,6 +50,6 @@ The example above is created with a noise intensity value of 0.5
 
 ### Floyd–Steinberg dithering + Grayscale:
 <img src= Images/Combo.png width="667" height="500">
-resulting image from the sample code in [Go to Custom Header](#comb-effects)
+resulting image from the sample code in the [Combining Effects](https://github.com/AndrewN4675/Java-BufferedImage-Effects/edit/main/README.md#combining-effects)
 
 
