@@ -50,6 +50,4 @@ The example above is created with a noise intensity value of 0.5
 
 ### Floyd–Steinberg dithering + Grayscale:
 <img src= Images/Combo.png width="667" height="500">
-resulting image from the sample code in the [Combining Effects](https://github.com/AndrewN4675/Java-BufferedImage-Effects/edit/main/README.md#combining-effects)
-
-
+resulting image from the sample code in Combining Effects
