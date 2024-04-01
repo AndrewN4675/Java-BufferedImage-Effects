@@ -1,11 +1,11 @@
 package effects_pkg;
 
 import javax.imageio.ImageIO;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-class Dither extends Effect {
+public class Dither extends Effect {
 
     //VARIABLES
     private int modValue;
@@ -23,8 +23,9 @@ class Dither extends Effect {
 
     //FUNCTIONS
     @Override
-    public BufferedImage process(BufferedImage inputImage, boolean newFile) {
+    public BufferedImage process(BufferedImage inputImage, boolean newFile, String filePath) {
         this.outputImage = inputImage;
+        this.newPath = filePath;
         dither();
         if (newFile) {
             createNewPng();

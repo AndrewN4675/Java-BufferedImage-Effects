@@ -1,7 +1,7 @@
 package effects_pkg;
 
 import javax.imageio.ImageIO;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -23,8 +23,9 @@ public class Grayscale extends Effect{
 
     //FUNCTIONS
     @Override
-    public BufferedImage process(BufferedImage inputImage, boolean newFile) {
+    public BufferedImage process(BufferedImage inputImage, boolean newFile, String filePath) {
         this.outputImage = inputImage;
+        this.newPath = filePath;
         grayScale();
         if(newFile){
             createNewPng();
