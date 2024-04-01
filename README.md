@@ -1,6 +1,8 @@
 # Java-BufferedImage-Effects
 A simple implementation of graphical effects that work with Java BufferedImages such as grayscale conversion, color inversion, Floyd–Steinberg dithering, noise, etc...
 
+** All effects are calculated using the CPU
+
 # Effects
 
 ## Base Image:
