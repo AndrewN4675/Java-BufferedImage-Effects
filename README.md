@@ -7,7 +7,7 @@ A library designed to provide users with CPU based graphical effects that can be
 There are two process functions which are identical for all effects:
 
 ```java
-BufferedImage EFFECT_NAME process(boolean newFile);
+BufferedImage /*EFFECT_NAME*/ process(boolean newFile);
 ```
 Prompts the user with a file finder window, allowing them to select the image they wish to process. 
 Once the image has been processed, a new PNG file will be created in the same directory as the orignal image if requested.
@@ -15,7 +15,7 @@ Once the image has been processed, a new PNG file will be created in the same di
 and
 
 ```java
-BufferedImage EFFECT_NAME process(BufferedImage inputImage, boolean newFile, String filePath);
+BufferedImage /*EFFECT_NAME*/ process(BufferedImage inputImage, boolean newFile, String filePath);
 ```
 Requires an input Buffered Image and will create it creates a new PNG file in the provided folder once the image has been processed if requested
 
