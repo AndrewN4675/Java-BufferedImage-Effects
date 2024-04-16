@@ -1,3 +1,5 @@
+//Copyright (c) 2024 Andrew Neal
+
 package effects_pkg;
 
 import javax.imageio.ImageIO;
