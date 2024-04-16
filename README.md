@@ -1,5 +1,5 @@
 # Java-BufferedImage-Effects
-A library designed to perform CPU based graphical effects on Java Buffered Images
+A library designed to provide users with CPU based graphical effects that can be performed on Java Buffered Images or Buffered Image supported file formats
 
 ## Using Effects
 
