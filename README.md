@@ -1,22 +1,23 @@
 # Java-BufferedImage-Effects
-A simple implementation of graphical effects that work with Java BufferedImages such as grayscale conversion, color inversion, Floyd–Steinberg dithering, noise, etc...
-
-** All effects are calculated using the CPU
+A library designed to perform CPU based graphical effects on Java Buffered Images
 
 ## Using Effects
 
 ### Process Function:
-There are two process functions which are identical for all effects. 
+There are two process functions which are identical for all effects:
 
 ```java
 BufferedImage EFFECT_NAME process(boolean newFile);
 ```
-and 
+Prompts the user with a file finder window, allowing them to select the image they wish to process. 
+Once the image has been processed, a new PNG file will be created in the same directory as the orignal image if requested.
+
+and
+
 ```java
 BufferedImage EFFECT_NAME process(BufferedImage inputImage, boolean newFile, String filePath);
 ```
-The first function will load a file finder window which allows the user to find the image that they want to process and when finished, will create a new file in the sam folder if requested.
-The second function requires an input BufferImage and much like the first function, will create a new png file in the provided folder.
+Requires an input Buffered Image and will create it creates a new PNG file in the provided folder once the image has been processed if requested
 
 ### Combining Effects:
 Process functions can be nested to combine effects.
