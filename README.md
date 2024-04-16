@@ -29,7 +29,7 @@ di.process(gs.process(false), true, "C:/Path/to/folder/");
 ```
 will create a png image called "Dithered.png" in the folder provided.
 
-## Effects
+## Example Effects
 
 ### Base Image:
 <img src= Images/Base.jpg width="667" height="500">
@@ -41,13 +41,6 @@ The example above is created with a dithering mod value of 2
 ### Grayscale:
 <img src= Images/Grayscale.jpg width="667" height="500">
 The example above is created with the rec601 grayscale conversion algorithm
-
-### Color Inversion:
-<img src= Images/Inverted.jpg width="667" height="500">
-
-### Noise:
-<img src= Images/Noise.jpg width="667" height="500">
-The example above is created with a noise intensity value of 0.5
 
 ### Floyd–Steinberg dithering + Grayscale:
 <img src= Images/Combo.png width="667" height="500">
