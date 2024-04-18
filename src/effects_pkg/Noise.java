@@ -2,7 +2,7 @@
 
 package effects_pkg;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Random;
 
 public class Noise extends Effect{

@@ -3,7 +3,8 @@
 package effects_pkg;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.UIManager;
+import javax.swing.JFileChooser;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -33,8 +34,9 @@ abstract class Effect {
          try {
             this.file = getFile();
             if (file != null) {
-                String newName = this.effectName + file.getName();  //adding effect to the files name
-                newPath = file.getAbsolutePath().replace(file.getName(), "") + newName; //making the path for the new file to go to the same folder as the original
+                String newName = this.effectName + file.getName();
+                //making the path for the new file to go to the same folder as the original
+                newPath = file.getAbsolutePath().replace(file.getName(), "") + newName;
                 this.outputImage = ImageIO.read(file);
                 this.applyEffect();
             }
@@ -52,8 +54,8 @@ abstract class Effect {
     protected abstract void applyEffect();
 
     protected static void setUIStyle(){
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");//will make the JFileChooser look like Windows 11 or 10
+        try {//will make the JFileChooser look like Windows 11 or 10
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (Exception e) {// handle exception
         }
     }

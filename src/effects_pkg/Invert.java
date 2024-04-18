@@ -2,7 +2,7 @@
 
 package effects_pkg;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class Invert extends Effect {
 
