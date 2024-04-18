@@ -2,10 +2,7 @@
 
 package effects_pkg;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Dither extends Effect {
 
@@ -16,57 +13,18 @@ public class Dither extends Effect {
     public Dither(int modValue) {
         setUIStyle();
         setModValue(modValue);
+        this.effectName = "Dither ";
     }
 
     public Dither() {
         setUIStyle();
         this.modValue = 1;
+        this.effectName = "Dithered ";
     }
 
     //FUNCTIONS
     @Override
-    public BufferedImage process(BufferedImage inputImage, boolean newFile, String filePath) {
-        this.outputImage = inputImage;
-        this.newPath = filePath;
-        dither();
-        if (newFile) {
-            createNewPng();
-        }
-        return this.outputImage;
-    }
-
-    @Override
-    public BufferedImage process(boolean newFile) {
-        try {
-            this.file = getFile();
-            if (file != null) {
-                String newName = "Dithered " + file.getName();  //adding effect to the files name
-                newPath = file.getAbsolutePath().replace(file.getName(), "") + newName; //making the path for the new file to go to the same folder as the original
-                this.outputImage = ImageIO.read(file);
-                dither();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        if (newFile) {
-            createNewPng();
-        }
-
-        return this.outputImage;
-    }
-
-    //determines how limited the pallet is 0 - 255
-    public void setModValue(int modValue) {
-        this.modValue = modValue;
-        if (this.modValue < 1) {
-            this.modValue = 1;
-        } else if (this.modValue > 255) {
-            this.modValue = 255;
-        }
-    }
-
-    private void dither() {
+    protected void applyEffect() {
         for (int y = 0; y < this.outputImage.getHeight() - 1; y++) {
             for (int x = 1; x < this.outputImage.getWidth() - 1; x++) {
 
@@ -115,5 +73,14 @@ public class Dither extends Effect {
         if (value <= 0) {
             return 0;
         } else return Math.min(value, 255);
+    }
+
+    //determines how limited the pallet is 0 - 255
+    public void setModValue(int modValue) {
+        if( modValue >= 0 && modValue <= 255){
+            this.modValue = modValue;
+        }else {
+            System.out.println("Mod value out of range. 0 - 255");
+        }
     }
 }

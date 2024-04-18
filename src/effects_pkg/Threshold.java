@@ -16,57 +16,18 @@ public class Threshold extends Effect{
     public Threshold(int modValue) {
         setUIStyle();
         setModValue(modValue);
+        this.effectName = "Threshold ";
     }
 
     public Threshold() {
         setUIStyle();
         this.modValue = 1;
+        this.effectName = "Threshold ";
     }
 
     //FUNCTIONS
     @Override
-    public BufferedImage process(BufferedImage inputImage, boolean newFile, String filePath) {
-        this.outputImage = inputImage;
-        this.newPath = filePath+ "Threshold.png";
-        threshold();
-        if (newFile) {
-            createNewPng();
-        }
-        return this.outputImage;
-    }
-
-    @Override
-    public BufferedImage process(boolean newFile) {
-        try {
-            this.file = getFile();
-            if (file != null) {
-                String newName = "Threshold " + file.getName();
-                newPath = file.getAbsolutePath().replace(file.getName(), "") + newName;
-                this.outputImage = ImageIO.read(file);
-                threshold();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        if (newFile) {
-            createNewPng();
-        }
-
-        return this.outputImage;
-    }
-
-    //determines how limited the pallet is 0 - 255
-    public void setModValue(int modValue) {
-        this.modValue = modValue;
-        if (this.modValue < 1) {
-            this.modValue = 1;
-        } else if (this.modValue > 255) {
-            this.modValue = 255;
-        }
-    }
-
-    private void threshold() {
+    protected void applyEffect() {
         for (int y = 0; y < this.outputImage.getHeight() - 1; y++) {
             for (int x = 1; x < this.outputImage.getWidth() - 1; x++) {
 
@@ -86,6 +47,16 @@ public class Threshold extends Effect{
 
                 this.outputImage.setRGB(x, y, newRGB.getRGB());
             }
+        }
+    }
+
+    //determines how limited the pallet is 0 - 255
+    public void setModValue(int modValue) {
+        this.modValue = modValue;
+        if (this.modValue < 1) {
+            this.modValue = 1;
+        } else if (this.modValue > 255) {
+            this.modValue = 255;
         }
     }
 }

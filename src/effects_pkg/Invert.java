@@ -2,51 +2,19 @@
 
 package effects_pkg;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Invert extends Effect {
 
     //CONSTRUCTORS
     public Invert(){
         setUIStyle();
+        this.effectName = "Invert ";
     }
 
     //FUNCTIONS
     @Override
-    public BufferedImage process(BufferedImage inputImage, boolean newFile, String filePath) {
-        this.outputImage = inputImage;
-        this.newPath = filePath;
-        invert();
-        if(newFile){//create a new file if requested
-            createNewPng();
-        }
-        return this.outputImage;
-    }
-
-    @Override
-    public BufferedImage process(boolean newFile){
-        try {
-            this.file = getFile();
-            if(file != null){
-                String newName ="Inverted " + file.getName(); //adding effect to the files name
-                newPath = file.getAbsolutePath().replace(file.getName(), "") + newName; //making the path for the new file to go to the same folder as the original
-                this.outputImage = ImageIO.read(file);
-                invert();
-            }
-        } catch(IOException e){
-            throw new RuntimeException(e);
-        }
-
-        if(newFile){
-            createNewPng();
-        }
-        return this.outputImage;
-    }
-
-    private void invert(){
+    protected void applyEffect() {
         for (int x = 0; x < this.outputImage.getWidth(); x++) {
             for (int y = 0; y < this.outputImage.getHeight(); y++) {
                 int RGB = this.outputImage.getRGB(x, y);

@@ -2,10 +2,7 @@
 
 package effects_pkg;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Grayscale extends Effect{
 
@@ -16,56 +13,18 @@ public class Grayscale extends Effect{
     public Grayscale(int conversionType){
         setUIStyle();
         this.setConversion(conversionType);
+        this.effectName = "Grayscale ";
     }
 
     public Grayscale(){
         setUIStyle();
         this.conv = 1;
+        this.effectName = "Grayscale ";
     }
 
     //FUNCTIONS
     @Override
-    public BufferedImage process(BufferedImage inputImage, boolean newFile, String filePath) {
-        this.outputImage = inputImage;
-        this.newPath = filePath;
-        grayScale();
-        if(newFile){
-            createNewPng();
-        }
-        return this.outputImage;
-    }
-
-    @Override
-    public BufferedImage process(boolean newFile){
-        try {
-            this.file = getFile();
-            if(file != null){
-                String newName ="Grayscale " + file.getName();  //adding effect to the files name
-                newPath = file.getAbsolutePath().replace(file.getName(), "") + newName; //making the path for the new file to go to the same folder as the original
-                this.outputImage = ImageIO.read(file);
-                grayScale();
-            }
-        } catch(IOException e){
-            throw new RuntimeException(e);
-        }
-
-        if(newFile){
-            createNewPng();
-        }
-        return this.outputImage;
-    }
-
-    //determines the conversion algorithm used 1 - 3
-    public void setConversion(int conversionType){
-        if(conversionType > 0 && conversionType < 4){
-            this.conv = conversionType;
-        }else{
-            System.out.println("Error setting greyscale conversion type:");
-            System.out.println("1 - rec601 \n2 - ITU-BT.709 \n 3 - ITU-R BT.2100");
-        }
-    }
-
-    private void grayScale(){
+    protected void applyEffect() {
         for (int x = 0; x < this.outputImage.getWidth(); x++) {
             for (int y = 0; y < this.outputImage.getHeight(); y++) {
                 int RGB = this.outputImage.getRGB(x, y);
@@ -86,6 +45,16 @@ public class Grayscale extends Effect{
                 Color processedPixel = new Color(lum, lum, lum);
                 this.outputImage.setRGB(x, y, processedPixel.getRGB());
             }
+        }
+    }
+
+    //determines the conversion algorithm used 1 - 3
+    public void setConversion(int conversionType){
+        if(conversionType > 0 && conversionType < 4){
+            this.conv = conversionType;
+        }else{
+            System.out.println("Error setting greyscale conversion type:");
+            System.out.println("1 - rec601 \n2 - ITU-BT.709 \n 3 - ITU-R BT.2100");
         }
     }
 }

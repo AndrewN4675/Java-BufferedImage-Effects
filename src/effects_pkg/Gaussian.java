@@ -2,10 +2,7 @@
 
 package effects_pkg;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.lang.Math;
 
 public class Gaussian extends Effect{
@@ -17,54 +14,18 @@ public class Gaussian extends Effect{
     public Gaussian(int radius){
         this.setRadius(radius);
         setUIStyle();
+        this.effectName = "Gaussian ";
     }
 
     public Gaussian(){
         this.radi = 3;
         setUIStyle();
+        this.effectName = "Gaussian ";
     }
 
     //FUNCTIONS
     @Override
-    public BufferedImage process(BufferedImage inputImage, boolean newFile, String filePath) {
-        this.outputImage = inputImage;
-        this.newPath = filePath;
-        gaussianBlur();
-        if(newFile){
-            createNewPng();
-        }
-        return this.outputImage;
-    }
-
-    @Override
-    public BufferedImage process(boolean newFile){
-        try {
-            this.file = getFile();
-            if(file != null){
-                String newName ="Gaussian " + file.getName();  //adding effect to the files name
-                newPath = file.getAbsolutePath().replace(file.getName(), "") + newName; //making the path for the new file to go to the same folder as the original
-                this.outputImage = ImageIO.read(file);
-                gaussianBlur();
-            }
-        } catch(IOException e){
-            throw new RuntimeException(e);
-        }
-
-        if(newFile){
-            createNewPng();
-        }
-        return this.outputImage;
-    }
-
-    public void setRadius(int radius){
-        if(radius >= 0){
-            this.radi = radius;
-        }else{
-            System.out.println("Radius must be a positive integer");
-        }
-    }
-
-    private void gaussianBlur(){
+    protected void applyEffect() {
         this.createGaussianMatrix();
 
         for (int x = this.radi; x < this.outputImage.getWidth() - this.radi; x++) {
@@ -131,6 +92,14 @@ public class Gaussian extends Effect{
             for (int y = 0; y < (2 * this.radi) + 1; y++){
                 this.gaussMatrix[x][y] = this.gaussMatrix[x][y] / sum;
             }
+        }
+    }
+
+    public void setRadius(int radius){
+        if(radius >= 0){
+            this.radi = radius;
+        }else{
+            System.out.println("Radius must be a positive integer");
         }
     }
 }

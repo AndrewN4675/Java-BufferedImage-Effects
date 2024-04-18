@@ -11,13 +11,43 @@ import java.io.IOException;
 abstract class Effect {
 
     //VARIABLES
+    protected String effectName;
     protected String newPath;//saves the file location
     protected BufferedImage outputImage;
     protected File file;
 
     //FUNCTIONS
-    public abstract BufferedImage process(BufferedImage inputImage,boolean newFile, String filePath);
-    public abstract BufferedImage process(boolean newFile);
+    public BufferedImage process(BufferedImage inputImage,boolean newFile, String filePath)
+    {
+        this.outputImage = inputImage;
+        this.newPath = filePath;
+        this.applyEffect();
+        if (newFile) {
+            createNewPng();
+        }
+        return this.outputImage;
+    }
+
+    public BufferedImage process(boolean newFile)
+    {
+         try {
+            this.file = getFile();
+            if (file != null) {
+                String newName = this.effectName + file.getName();  //adding effect to the files name
+                newPath = file.getAbsolutePath().replace(file.getName(), "") + newName; //making the path for the new file to go to the same folder as the original
+                this.outputImage = ImageIO.read(file);
+                this.applyEffect();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (newFile) {
+            createNewPng();
+        }
+
+        return this.outputImage;
+    }
 
     protected static void setUIStyle(){
         try {
@@ -41,4 +71,6 @@ abstract class Effect {
             throw new RuntimeException(e);
         }
     }
+
+    protected abstract void applyEffect();
 }
