@@ -73,6 +73,7 @@ public class Gaussian extends Effect{
                 double dGreen = 0.0;
                 double dBlue = 0.0;
 
+                //process pixel from matrix values
                 for (int kernX = -this.radi; kernX < this.radi; kernX++){
                     for (int kernY = -this.radi; kernY < this.radi; kernY++){
 
@@ -84,9 +85,9 @@ public class Gaussian extends Effect{
                         int green = (RGB >> 8) & 0x000000FF;
                         int blue = (RGB) & 0x000000FF;
 
-                        dRed += (double)(red) * kernVal;
-                        dGreen += (double)(green) * kernVal;
-                        dBlue += (double)(blue) * kernVal;
+                        dRed += red * kernVal;
+                        dGreen += green * kernVal;
+                        dBlue += blue * kernVal;
                     }
                 }
 
