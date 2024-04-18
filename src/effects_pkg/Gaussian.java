@@ -10,6 +10,7 @@ import java.lang.Math;
 
 public class Gaussian extends Effect{
 
+    public boolean blackBorder = false; //determines if edges are blacked out
     private int radi;
     private double[][] gaussMatrix;
 
@@ -68,7 +69,6 @@ public class Gaussian extends Effect{
 
         for (int x = this.radi; x < this.outputImage.getWidth() - this.radi; x++) {
             for (int y = this.radi; y < this.outputImage.getHeight() - this.radi; y++) {
-
                 double dRed = 0.0;
                 double dGreen = 0.0;
                 double dBlue = 0.0;
@@ -93,6 +93,18 @@ public class Gaussian extends Effect{
 
                 Color processedPixel = new Color((int)(dRed) , (int)(dGreen), (int)(dBlue));
                 this.outputImage.setRGB(x, y, processedPixel.getRGB());
+            }
+        }
+        if(this.blackBorder)
+        {
+            for (int x = 0; x < this.outputImage.getWidth(); x++) {
+                for (int y = 0; y < this.outputImage.getHeight(); y++) {
+                    if ( (x < this.radi || x > this.outputImage.getWidth() - this.radi)
+                            || (y < this.radi || y > this.outputImage.getHeight() - this.radi))
+                    {
+                        this.outputImage.setRGB(x, y, new Color(0,0,0).getRGB());
+                    }
+                }
             }
         }
     }
