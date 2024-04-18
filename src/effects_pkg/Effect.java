@@ -49,6 +49,8 @@ abstract class Effect {
         return this.outputImage;
     }
 
+    protected abstract void applyEffect();
+
     protected static void setUIStyle(){
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");//will make the JFileChooser look like Windows 11 or 10
@@ -71,6 +73,4 @@ abstract class Effect {
             throw new RuntimeException(e);
         }
     }
-
-    protected abstract void applyEffect();
 }
