@@ -15,7 +15,7 @@ public class Grayscale extends Effect{
     //CONSTRUCTORS
     public Grayscale(int conversionType){
         setUIStyle();
-        this.set_conversion(conversionType);
+        this.setConversion(conversionType);
     }
 
     public Grayscale(){
@@ -56,9 +56,9 @@ public class Grayscale extends Effect{
     }
 
     //determines the conversion algorithm used 1 - 3
-    public void set_conversion(int conversionType){
+    public void setConversion(int conversionType){
         if(conversionType > 0 && conversionType < 4){
-            conv = conversionType;
+            this.conv = conversionType;
         }else{
             System.out.println("Error setting greyscale conversion type:");
             System.out.println("1 - rec601 \n2 - ITU-BT.709 \n 3 - ITU-R BT.2100");
