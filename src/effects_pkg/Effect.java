@@ -12,7 +12,7 @@ abstract class Effect {
 
     //VARIABLES
     protected String effectName;
-    protected String newPath;//saves the file location
+    protected String newPath;
     protected BufferedImage outputImage;
     protected File file;
 
@@ -23,7 +23,7 @@ abstract class Effect {
         this.newPath = filePath;
         this.applyEffect();
         if (newFile) {
-            createNewPng();
+            createNewPNG();
         }
         return this.outputImage;
     }
@@ -34,7 +34,8 @@ abstract class Effect {
             this.file = getFile();
             if (file != null) {
                 String newName = this.effectName + file.getName();  //adding effect to the files name
-                newPath = file.getAbsolutePath().replace(file.getName(), "") + newName; //making the path for the new file to go to the same folder as the original
+                //making the path for the new file to go to the same folder as the original
+                newPath = file.getAbsolutePath().replace(file.getName(), "") + newName;
                 this.outputImage = ImageIO.read(file);
                 this.applyEffect();
             }
@@ -43,18 +44,19 @@ abstract class Effect {
         }
 
         if (newFile) {
-            createNewPng();
+            createNewPNG();
         }
 
         return this.outputImage;
     }
 
-    protected abstract void applyEffect();
+    protected abstract void applyEffect();//Method where effect calculations are performed 
 
     protected static void setUIStyle(){
         try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");//will make the JFileChooser look like Windows 11 or 10
-        } catch (Exception e) {// handle exception
+            //Make the JFileChooser look like Windows 11 or 10
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception e) {// handle exception if OS is not Windows
         }
     }
 
@@ -66,7 +68,7 @@ abstract class Effect {
         return null;
     }
 
-    protected void createNewPng()  {
+    protected void createNewPNG()  {
         try {
             ImageIO.write(this.outputImage, "png", new File(newPath));
         }catch (IOException e){
