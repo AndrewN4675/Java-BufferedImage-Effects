@@ -1,16 +1,18 @@
 //Copyright (c) 2024 Andrew Neal
 
-package effects_pkg;
+package filters;
 
 import java.awt.Color;
 import java.lang.Math;
 
-public class Gaussian extends Effect{
+public class Gaussian extends Filter {
 
+    //VARIABLES
     public boolean blackBorder = false; //determines if edges are blacked out
     private int radi;
     private double[][] gaussMatrix;
 
+    //CONSTRUCTORS
     public Gaussian(int radius){
         this.setRadius(radius);
         setUIStyle();
@@ -23,7 +25,7 @@ public class Gaussian extends Effect{
         this.effectName = "Gaussian ";
     }
 
-    //FUNCTIONS
+    //METHODS
     @Override
     protected void applyEffect() {
         this.createGaussianMatrix();
