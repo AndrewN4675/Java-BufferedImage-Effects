@@ -17,7 +17,7 @@ and
 ```java
 BufferedImage /*FILTER_NAME*/ process(BufferedImage inputImage, boolean newFile, String filePath);
 ```
-Requires an input Buffered Image and will create it creates a new PNG file in the provided folder once the image has been processed if requested
+Requires an input Buffered Image and will create it creates a new PNG file named "Filtered-Image.png" in the provided folder once the image has been processed if requested
 
 ### Combining Filters:
 Process functions can be nested to combine filters.
