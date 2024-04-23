@@ -1,13 +1,13 @@
-# Java-BufferedImage-Effects
-A library designed to provide users with CPU based graphical effects that can be performed on Java Buffered Images or Buffered Image supported file formats
+# Java-BufferedImage-Filters
+A library designed to provide users with CPU based graphical filters that can be performed on Java Buffered Images or Buffered Image supported file formats
 
-## Using Effects
+## Using Filters
 
 ### Process Function:
-There are two process functions which are identical for all effects:
+There are two process functions which are identical for all filters:
 
 ```java
-BufferedImage /*EFFECT_NAME*/ process(boolean newFile);
+BufferedImage /*FILTER_NAME*/ process(boolean newFile);
 ```
 Prompts the user with a file finder window, allowing them to select the image they wish to process. 
 Once the image has been processed, a new PNG file will be created in the same directory as the orignal image if requested.
@@ -15,12 +15,12 @@ Once the image has been processed, a new PNG file will be created in the same di
 and
 
 ```java
-BufferedImage /*EFFECT_NAME*/ process(BufferedImage inputImage, boolean newFile, String filePath);
+BufferedImage /*FILTER_NAME*/ process(BufferedImage inputImage, boolean newFile, String filePath);
 ```
 Requires an input Buffered Image and will create it creates a new PNG file in the provided folder once the image has been processed if requested
 
-### Combining Effects:
-Process functions can be nested to combine effects.
+### Combining Filters:
+Process functions can be nested to combine filters.
 Example:
 ```java
 Grayscale gs = new Grayscale();
@@ -29,7 +29,7 @@ di.process(gs.process(false), true, "C:/Path/to/folder/");
 ```
 will create a png image called "Dithered.png" in the folder provided.
 
-## Example Effects
+## Example Filters
 
 ### Base Image:
 <img src= Images/Base.jpg width="667" height="500">
@@ -44,4 +44,4 @@ The example above is created with the rec601 grayscale conversion algorithm
 
 ### Floyd–Steinberg dithering + Grayscale:
 <img src= Images/Combo.png width="667" height="500">
-resulting image from the sample code in Combining Effects
+resulting image from the sample code in Combining Filters
