@@ -38,10 +38,6 @@ will create a png image called "Dithered.png" in the folder provided.
 <img src= Images/Dithered.jpg width="667" height="500">
 The example above is created with a dithering mod value of 2
 
-### Grayscale:
-<img src= Images/Grayscale.jpg width="667" height="500">
-The example above is created with the rec601 grayscale conversion algorithm
-
 ### Floyd–Steinberg dithering + Grayscale:
 <img src= Images/Combo.png width="667" height="500">
 resulting image from the sample code in Combining Filters
